@@ -5,6 +5,14 @@ const myTableName = "my_storage_table";
 
 /**
  * @query
+ */
+export function echp(): void {
+    Notifier.sendString("Hello from the web summit");
+}
+
+
+/**
+ * @query
  * @param {FetchInput} input - A parsed input argument
  */
 export function fetchValue(input: FetchInput): void {
