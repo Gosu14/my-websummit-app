@@ -28,6 +28,7 @@ export function signature(): void {
             }
         }
     }
+    Notifier.sendString("Signature verification succeeded");
 }
 
 /**
