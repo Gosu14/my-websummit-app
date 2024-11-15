@@ -1,4 +1,4 @@
-import { Notifier, Ledger, JSON } from '@klave/sdk';
+import { Notifier, Ledger, JSON, Context } from '@klave/sdk';
 import { FetchInput, FetchOutput, StoreInput, StoreOutput, ErrorMessage } from './types';
 
 const myTableName = "my_storage_table";
@@ -6,8 +6,9 @@ const myTableName = "my_storage_table";
 /**
  * @query
  */
-export function echp(): void {
-    Notifier.sendString("Hello from the web summit");
+export function echo(): void {
+    let sender = Context.get("sender");
+    Notifier.sendString("Hello from " + sender);
 }
 
 
