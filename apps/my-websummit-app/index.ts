@@ -4,6 +4,15 @@ import { FetchInput, FetchOutput, StoreInput, StoreOutput, ErrorMessage } from '
 const myTableName = "my_storage_table";
 
 /**
+ * @transaction
+ */
+export function trustedTime(): void 
+{
+    let time = Context.get("trusted_time");
+    Notifier.sendString("trusted_time: " + time);
+}
+
+/**
  * @query
  */
 export function echo(): void {
