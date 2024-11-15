@@ -1,4 +1,4 @@
-import { Notifier, Ledger, JSON, Context } from '@klave/sdk';
+import { Notifier, Ledger, JSON, Context, Crypto } from '@klave/sdk';
 import { FetchInput, FetchOutput, StoreInput, StoreOutput, ErrorMessage } from './types';
 
 const myTableName = "my_storage_table";
@@ -10,6 +10,24 @@ export function trustedTime(): void
 {
     let time = Context.get("trusted_time");
     Notifier.sendString("trusted_time: " + time);
+}
+
+/**
+ * @query
+ */
+export function signature(): void {
+    let eccKey = Crypto.Subtle.generateKey({namedCurve: "P-256"} as Crypto.EcKeyGenParams, true, ["sign", "verify"]);
+    let data = String.UTF8.encode("Hello, World!", true);
+    for (let i = 0; i < 100; i++) {
+        let signature = Crypto.Subtle.sign({hash: "SHA-256"} as Crypto.EcdsaParams, eccKey.data, data);
+        let verified = Crypto.Subtle.verify({hash: "SHA-256"} as Crypto.EcdsaParams, eccKey.data, data, signature.data);
+        if (verified.data) {
+            let verification = verified.data as Crypto.SignatureVerification;
+            if(!verification.isValid) {
+                Notifier.sendString("Signature verification failed");
+            }
+        }
+    }
 }
 
 /**
