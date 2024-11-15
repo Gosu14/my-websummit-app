@@ -18,7 +18,7 @@ export function trustedTime(): void
 export function signature(): void {
     let eccKey = Crypto.Subtle.generateKey({namedCurve: "P-256"} as Crypto.EcKeyGenParams, true, ["sign", "verify"]);
     let data = String.UTF8.encode("Hello, World!", true);
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 10000; i++) {
         let signature = Crypto.Subtle.sign({hash: "SHA-256"} as Crypto.EcdsaParams, eccKey.data, data);
         let verified = Crypto.Subtle.verify({hash: "SHA-256"} as Crypto.EcdsaParams, eccKey.data, data, signature.data);
         if (verified.data) {
