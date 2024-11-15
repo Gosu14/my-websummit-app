@@ -19,7 +19,7 @@ export function echo(): void {
     let sender = Context.get("sender");
     Notifier.sendString("sender: " + sender);
     let caller = Context.get("caller");
-    Notifier.sendString("caller: " + sender);
+    Notifier.sendString("caller: " + caller);
     let time = Context.get("trusted_time");
     Notifier.sendString("trusted_time: " + time);
 }
