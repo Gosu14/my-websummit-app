@@ -8,7 +8,11 @@ const myTableName = "my_storage_table";
  */
 export function echo(): void {
     let sender = Context.get("sender");
-    Notifier.sendString("Hello from " + sender);
+    Notifier.sendString("sender: " + sender);
+    let caller = Context.get("caller");
+    Notifier.sendString("caller: " + sender);
+    let time = Context.get("trusted_time");
+    Notifier.sendString("trusted_time: " + time);
 }
 
 
