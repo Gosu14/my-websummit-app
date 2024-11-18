@@ -15,6 +15,13 @@ export function trustedTime(): void
 /**
  * @query
  */
+export function ping(): void {
+    Notifier.sendString("PONG");
+}
+
+/**
+ * @query
+ */
 export function signature(): void {
     let eccKey = Crypto.Subtle.generateKey({namedCurve: "P-256"} as Crypto.EcKeyGenParams, true, ["sign", "verify"]);
     let data = String.UTF8.encode("Hello, World!", true);
