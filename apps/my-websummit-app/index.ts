@@ -1,4 +1,4 @@
-import { Notifier, Ledger, JSON, Context, Crypto } from '@klave/sdk';
+import { Notifier, Ledger, JSON, Context, Crypto, HttpRequest, HTTP } from '@klave/sdk';
 import { FetchInput, FetchOutput, StoreInput, StoreOutput, ErrorMessage } from './types';
 
 const myTableName = "my_storage_table";
@@ -17,6 +17,29 @@ export function trustedTime(): void
  */
 export function ping(): void {
     Notifier.sendString("PONG");
+}
+
+/**
+ * @query
+ */
+export function httpReques(): void {
+    const query: HttpRequest = {
+        hostname: 'https://restcountries.com/v3.1',
+        port: 443,
+        method: 'GET',
+        path: '/name/france?fields=capital',
+        headers: [],
+        body: ''
+    };
+
+    let response = HTTP.request(query);
+
+    if(!response)
+    {
+        Notifier.sendString("HTTP request failed");
+        return;
+    }
+    Notifier.sendString(JSON.stringify(response));
 }
 
 /**
