@@ -22,9 +22,9 @@ export function ping(): void {
 /**
  * @query
  */
-export function httpReques(): void {
+export function httpRequest(): void {
     const query: HttpRequest = {
-        hostname: 'https://restcountries.com/v3.1',
+        hostname: 'restcountries.com/v3.1',
         port: 443,
         method: 'GET',
         path: '/name/france?fields=capital',
