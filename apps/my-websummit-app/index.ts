@@ -27,7 +27,7 @@ export function httpRequest(): void {
     const query: HttpRequest = {
         hostname: 'restcountries.com',
         method: "GET",
-        path: "/v3.1/name/france?fields=capital",
+        path: "/v3.1/name/france",
         headers: [],
     };
 
